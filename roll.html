@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>小球跳动</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .roll{
+        width: 120px;
+        height: 120px;
+        background: #30c2ff;
+        border-radius: 50%;
+        position: absolute;
+    }
+    .roll2{
+        width: 120px;
+        height: 120px;
+        background: #30c2ff;
+        border-radius: 50%;
+        position: absolute;
+        margin-left: 120px;
+    }
+</style>
+<body>
+<div class="roll"></div>
+<div class="roll2"></div>
+<script>
+    //获取小球
+var roll=document.getElementsByClassName('roll')[0];
+var roll2=document.getElementsByClassName('roll2')[0];
+    var boxY = 0;
+    var boxX = 0;
+    var vx = Math.ceil(Math.random()*5);
+    var vy = Math.ceil(Math.random()*5);
+    // 设置定时器让小球移动
+    setInterval(function(){
+        boxX+=vx;
+        boxY+=vy;
+        roll.style.top = boxY+'px';
+        roll.style.left = boxX+'px';
+        // 现在小球移动范围
+        if((roll.offsetLeft>=(window.innerWidth-roll.offsetWidth))||(roll.offsetLeft<=0)){
+            // console.log(1)
+            vx=-vx;
+            roll.style.background='rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
+        }
+        if((roll.offsetTop>=(window.innerHeight-roll.offsetHeight))||(roll.offsetTop<=0)){
+            // console.log(1)
+            vy=-vy;
+            roll.style.background='rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
+        }
+    },10)
+//第二个球 移动
+    var boxY2 = Math.floor(Math.random()*(window.innerHeight-roll2.offsetHeight));
+    var boxX2 = Math.floor(Math.random()*(window.innerWidth-roll2.offsetWidth));
+    var vx2 = Math.ceil(Math.random()*5);
+    var vy2 = Math.ceil(Math.random()*5);
+    // 设置定时器让小球移动
+    setInterval(function(){
+        boxX2+=vx2;
+        boxY2+=vy2;
+        roll2.style.top = boxY2+'px';
+        roll2.style.left = boxX2+'px';
+        // 现在小球移动范围
+        if((roll2.offsetLeft>=(window.innerWidth-roll2.offsetWidth))||(roll2.offsetLeft<=0)){
+            vx2=-vx2;
+            roll2.style.background='rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
+        }
+
+        if((roll2.offsetTop>=(window.innerHeight-roll2.offsetHeight))||(roll2.offsetTop<=0)){
+            vy2=-vy2;
+            roll2.style.background='rgb('+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+','+Math.ceil(Math.random()*255)+')';
+        }
+    },10)
+
+</script>
+</body>
+</html>
